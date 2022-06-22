@@ -7,20 +7,26 @@ public class Day2 : Puzzle
 {
     public Day2(string inputFileName) : base(inputFileName) { }
 
+    /// <summary>
+    /// How many total square feet of wrapping paper should they order?
+    /// </summary>
     public override int Solve_Part1()
     {
         return Solve_Part1_Method3();
     }
 
+    /// <summary>
+    /// How many total feet of ribbon should they order?
+    /// </summary>
     public override int Solve_Part2()
     {
-        throw new NotImplementedException();
+        return Solve_Part2_Method1();
     }
 
     public int Solve_Part1_Method1() =>
             _instructions
                 .Select(GetDimensions)
-                .Select(d => Area(d.length, d.width, d.height) + SmallestArea(d.length, d.width, d.height))
+                .Select(d => Area(d.length, d.width, d.height) + SmallestAreaAndPerimeter(d.length, d.width, d.height).smallestArea)
                 .Sum();
 
     public int Solve_Part1_Method2() =>
@@ -58,16 +64,23 @@ public class Day2 : Puzzle
         return sum;
     }
 
-    /// <summary>
-    /// The area of the smallest side of a box (squared feet), given its length, width and height (feet).
-    /// </summary>
-    private static int SmallestArea(int length, int width, int height)
+    public int Solve_Part2_Method1()
     {
-        if (length >= width && length >= height) return width * height;
-        if (width >= length && width >= height) return length * height;
-        if (height >= length && height >= width) return length * width;
-        return 0;
+        return _instructions
+            .Select(GetDimensions)
+            .Select(d => SmallestAreaAndPerimeter(d.length, d.width, d.height).smallestPerimeter + BowLength(d.length, d.width, d.height))
+            .Sum();
     }
+
+    private static (int smallestArea, int smallestPerimeter) SmallestAreaAndPerimeter(int length, int width, int height)
+    {
+        if (length >= width && length >= height) return (width * height, 2 * (width + height));
+        if (width >= length && width >= height) return (length * height, 2 * (length + height));
+        if (height >= length && height >= width) return (length * width, 2 * (length + width));
+        return (0, 0);
+    }
+
+    private static int BowLength(int length, int width, int height) => length * width * height;
 
     /// <summary>
     /// Returns a tuple of (length, width, height) dimensions given a string (ex: "20x3x11" -> (20,3,11))
