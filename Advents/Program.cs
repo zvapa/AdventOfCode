@@ -14,7 +14,8 @@ public static class Program
         // Console.WriteLine("_2015.Day2.Part1: " + _2015_day2.Solve_Part1());
         // Console.WriteLine("_2015.Day2.Part2: " + _2015_day2.Solve_Part2());
         var _2015_day3 = new _2015.Day3(@"2015\day3_input.txt");
-        Console.WriteLine("_2015.Day3.Part1: " + _2015_day3.Solve_Part1());
+        // Console.WriteLine("_2015.Day3.Part1: " + _2015_day3.Solve_Part1());
+        Console.WriteLine("_2015.Day3.Part2: " + _2015_day3.Solve_Part2());
 
 
 
