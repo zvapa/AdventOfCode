@@ -13,10 +13,11 @@ public static class Program
         // var _2015_day2 = new _2015.Day2(@"2015\day2_input.txt");
         // Console.WriteLine("_2015.Day2.Part1: " + _2015_day2.Solve_Part1());
         // Console.WriteLine("_2015.Day2.Part2: " + _2015_day2.Solve_Part2());
-        var _2015_day3 = new _2015.Day3(@"2015\day3_input.txt");
+        // var _2015_day3 = new _2015.Day3(@"2015\day3_input.txt");
         // Console.WriteLine("_2015.Day3.Part1: " + _2015_day3.Solve_Part1());
-        Console.WriteLine("_2015.Day3.Part2: " + _2015_day3.Solve_Part2());
-
+        // Console.WriteLine("_2015.Day3.Part2: " + _2015_day3.Solve_Part2());
+        var _2015_day4 = new _2015.Day4(@"2015\day4_input.txt");
+        Console.WriteLine("_2015.Day3.Part2: " + _2015_day4.Solve_Part1());
 
 
         Console.ReadKey();
