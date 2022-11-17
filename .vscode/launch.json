@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/Advents/bin/Debug/net6.0/Advents.dll",
+            "program": "${workspaceFolder}/Advents/bin/Debug/net7.0/Advents.dll",
             "args": [],
             "cwd": "${workspaceFolder}/Advents",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
