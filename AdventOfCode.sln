@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benchmark", "Benchmark\Benc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{2492F20D-2C20-4F6C-A3CD-E73EFAF1A9C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{23D3BD21-6D43-4964-939D-05122A278904}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{2492F20D-2C20-4F6C-A3CD-E73EFAF1A9C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2492F20D-2C20-4F6C-A3CD-E73EFAF1A9C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2492F20D-2C20-4F6C-A3CD-E73EFAF1A9C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23D3BD21-6D43-4964-939D-05122A278904}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23D3BD21-6D43-4964-939D-05122A278904}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23D3BD21-6D43-4964-939D-05122A278904}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23D3BD21-6D43-4964-939D-05122A278904}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
