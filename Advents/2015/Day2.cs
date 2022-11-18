@@ -1,6 +1,3 @@
-using Microsoft.VisualBasic;
-using Utils;
-
 namespace AdventOfCode._2015;
 
 public class Day2 : Puzzle

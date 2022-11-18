@@ -13,3 +13,5 @@ public readonly struct Point2D_struct
         Y = y;
     }
 }
+
+public record Day5Part1Accumulator(char Previous, bool CharAppearsTwice, Dictionary<char, int> VowelsCount, Dictionary<string, int> ExcludedStringsCount);

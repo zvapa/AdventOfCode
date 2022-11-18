@@ -23,5 +23,8 @@ namespace Utils
 
             return Convert.ToHexString(data);
         }
+
+        public static IEnumerable<T> Map<TSource, T>(this IEnumerable<TSource> source, Func<TSource, T> map)
+        => source.Select(i => map(i));
     }
 }

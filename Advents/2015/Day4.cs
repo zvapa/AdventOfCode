@@ -1,5 +1,4 @@
 using System.Security.Cryptography;
-
 using Utils;
 
 namespace AdventOfCode._2015;
@@ -10,15 +9,14 @@ public class Day4 : Puzzle
 
     public override int Solve_Part1()
     {
-        // return Solve_Using_Linq(StartsWithAtLeastFiveZeros);
-        return Solve_Using_Loop(StartsWithAtLeastFiveZeros);
+        return Solve_Using_Linq(StartsWithAtLeastFiveZeros);
+        // return Solve_Using_Loop(StartsWithAtLeastFiveZeros);
     }
 
     public override int Solve_Part2()
     {
-        // return Solve_Using_Linq();
+        return Solve_Using_Linq(StartsWithAtLeastSixZeros);
         // return Solve_Using_Loop();
-        return 0;
     }
 
     public int Solve_Using_Linq(Func<string, bool> predicate)
