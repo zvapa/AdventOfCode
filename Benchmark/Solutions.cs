@@ -13,12 +13,12 @@ public class Solutions
     [Benchmark]
     public void Method1()
     {
-        sut.Solve_Part1_Linq();
+        sut.Solve_Part2_TestBothConditionsInOneParsing();
     }
 
     [Benchmark]
     public void Method2()
     {
-        sut.Solve_Part1_Loop();
+        sut.Solve_Part2_TestEachConditionSeparately();
     }
 }

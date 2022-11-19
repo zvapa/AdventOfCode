@@ -119,6 +119,26 @@ public class Day5 : Puzzle
 
     public override int Solve_Part2()
     {
+        // return Solve_Part2_TestBothConditionsInOneParsing();
+        return Solve_Part2_TestEachConditionSeparately();
+    }
+
+    public int Solve_Part2_TestEachConditionSeparately()
+    {
+        var niceWordsCount = 0;
+        foreach (var word in _instructions)
+        {
+            if (ContainsAtLeastOneLetterWhichRepeatsWithExactlyOneLetterBetweenThem(word) &&
+                ContainsNonOverlappingLetterPairThatAppearsAtLeastTwice(word))
+            {
+                niceWordsCount++;
+            }
+        }
+        return niceWordsCount;
+    }
+
+    public int Solve_Part2_TestBothConditionsInOneParsing()
+    {
         var niceWordsCount = 0;
         foreach (var word in _instructions)
         {
@@ -130,7 +150,7 @@ public class Day5 : Puzzle
         return niceWordsCount;
     }
 
-    public List<string> GetNiceWords_Part2()
+    public List<string> Part2_GetNiceWords()
     {
         List<string> res = new();
         foreach (var word in _instructions)
@@ -161,10 +181,10 @@ public class Day5 : Puzzle
                 continue;
             }
 
-            var currentPair = new string(new char[] { lastLetter.Value, currentLetter });
-            if (pairsAndPositions.ContainsKey(currentPair))
+            string currentPair = new(new char[] { lastLetter.Value, currentLetter });
+            if (pairsAndPositions.TryGetValue(currentPair, out List<int>? value))
             {
-                pairsAndPositions[currentPair].Add(i - 1 + i);
+                value.Add(i - 1 + i);
             }
             else
             {
@@ -213,5 +233,59 @@ public class Day5 : Puzzle
             }
         }
         return false;
+    }
+
+    public static bool ContainsNonOverlappingLetterPairThatAppearsAtLeastTwice(string @string)
+    {
+        Dictionary<string, List<int>> pairsAndPositions = new() { };
+        char? lastLetter = null;
+        for (int i = 0; i < @string.Length; i++)
+        {
+            char currentLetter = @string[i];
+            if (lastLetter is null)
+            {
+                lastLetter = currentLetter;
+                continue;
+            }
+            string currentPair = new(new char[] { lastLetter.Value, currentLetter });
+            if (pairsAndPositions.TryGetValue(currentPair, out List<int>? value))
+            {
+                value.Add(i - 1 + i);
+            }
+            else
+            {
+                pairsAndPositions.Add(currentPair, new List<int> { i - 1 + i });
+            }
+            lastLetter = currentLetter;
+        }
+
+        return IsThereANonOverlappingLetterPairThatAppearsAtLeastTwice(pairsAndPositions);
+    }
+
+    public static bool ContainsAtLeastOneLetterWhichRepeatsWithExactlyOneLetterBetweenThem(string @string)
+    {
+        List<char> lettersRepeatingWithExactlyOneLetterInBetween = new();
+        char? lastLetter = null;
+        char? letterBeforeLast = null;
+        for (int i = 0; i < @string.Length; i++)
+        {
+            char currentLetter = @string[i];
+            if (lastLetter is null || letterBeforeLast is null)
+            {
+                letterBeforeLast = lastLetter;
+                lastLetter = currentLetter;
+                continue;
+            }
+
+            if (letterBeforeLast == currentLetter)
+            {
+                lettersRepeatingWithExactlyOneLetterInBetween.Add(currentLetter);
+            }
+
+            letterBeforeLast = lastLetter;
+            lastLetter = currentLetter;
+        }
+
+        return lettersRepeatingWithExactlyOneLetterInBetween.Count > 0;
     }
 }
