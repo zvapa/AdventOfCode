@@ -9,7 +9,9 @@ public abstract class Puzzle
 
     protected Puzzle(string inputFileName)
     {
-        var path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!, inputFileName);
+        string? subpath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        var path = Path.Combine(subpath!, inputFileName);
+
         _instructions = Readers.ReadInstructionLines(path);
     }
 
