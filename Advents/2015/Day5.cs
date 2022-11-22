@@ -1,10 +1,10 @@
-using Utils;
-
 namespace AdventOfCode._2015;
 
 public class Day5 : Puzzle
 {
     public Day5(string inputFileName) : base(inputFileName) { }
+
+    public record Day5Part1Accumulator(char Previous, bool CharAppearsTwice, Dictionary<char, int> VowelsCount, Dictionary<string, int> ExcludedStringsCount);
 
     public override int Solve_Part1()
     {

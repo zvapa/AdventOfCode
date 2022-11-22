@@ -1,17 +1,15 @@
-using Utils;
-
 namespace AdventOfCode._2015;
 
 public class Day3 : Puzzle
 {
     private static readonly Point2D _start = new(0, 0);
-    private static readonly Point2D_struct _start_s = new(0, 0);
+    private static readonly Point2D_rs _start_s = new(0, 0);
 
     /// <summary>
     /// A dictionary of locations and how many times they were visited. Includes the starting location.
     /// </summary>
     private static readonly Dictionary<Point2D, int> _houses = new() { [_start] = 1 };
-    private static readonly Dictionary<Point2D_struct, int> _houses_s = new() { [_start_s] = 1 };
+    private static readonly Dictionary<Point2D_rs, int> _houses_s = new() { [_start_s] = 1 };
 
     public Day3(string inputFileName) : base(inputFileName) { }
 
@@ -37,7 +35,7 @@ public class Day3 : Puzzle
 
     public int Solve_Part1_UsingReadonlyStructs()
     {
-        Point2D_struct currentLocation = _start_s;
+        Point2D_rs currentLocation = _start_s;
         foreach (char instruction in _instructions[0])
         {
             currentLocation = currentLocation.NextLocation(instruction);
@@ -82,7 +80,7 @@ public class Day3 : Puzzle
             _houses[location]++;
         }
     }
-    private static void MarkHouse(Point2D_struct location)
+    private static void MarkHouse(Point2D_rs location)
     {
         if (!_houses_s.TryGetValue(location, out _))
         {

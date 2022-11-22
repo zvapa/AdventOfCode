@@ -1,6 +1,3 @@
-using System.Security.Cryptography;
-using Utils;
-
 namespace AdventOfCode._2015;
 
 public class Day4 : Puzzle
