@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace Utils;
 
 public static class Helpers
@@ -27,5 +22,10 @@ public static class Helpers
                 x += step;
             }
         }
+    }
+
+    public static void MatrixApply<T>(this ref Matrix<T> matrix, (int x, int y) upperLeftCorner, (int x, int y) lowerRightCorner, Action<T> action)
+    {
+        
     }
 }
