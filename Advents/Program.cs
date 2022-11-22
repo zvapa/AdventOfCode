@@ -16,10 +16,11 @@ public static class Program
         // var _2015_day4 = new _2015.Day4(@"2015\Inputs\day4_input.txt");
         // Console.WriteLine("_2015.Day4.Part1: " + _2015_day4.Solve_Part1());
         // Console.WriteLine("_2015.Day4.Part2: " + _2015_day4.Solve_Part2());
-        var _2015_day5 = new _2015.Day5(@"2015\Inputs\day5_input.txt");
+        // var _2015_day5 = new _2015.Day5(@"2015\Inputs\day5_input.txt");
         // Console.WriteLine("_2015.Day5.Part1: " + _2015_day5.Solve_Part1());
-        Console.WriteLine("_2015.Day5.Part2: " + _2015_day5.Solve_Part2());
-
+        // Console.WriteLine("_2015.Day5.Part2: " + _2015_day5.Solve_Part2());
+        var _2015_day6 = new _2015.Day6(@"2015\Inputs\day6_input.txt");
+        Console.WriteLine("_2015.Day6.Part1: " + _2015_day6.Solve_Part1());
 
         Console.ReadKey();
     }
