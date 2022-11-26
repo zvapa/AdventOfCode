@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Globalization;
-
 namespace Utils;
 
 public record Point2D(int X, int Y);

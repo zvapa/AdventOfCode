@@ -1,6 +1,3 @@
-using System.Reflection;
-using Utils;
-
 namespace AdventOfCode;
 
 public abstract class Puzzle

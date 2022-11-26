@@ -1,3 +1,4 @@
+using static AdventOfCode._2015.Day6;
 namespace Tests._2015;
 
 public class Day6Tests
