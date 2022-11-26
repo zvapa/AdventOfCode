@@ -6,21 +6,36 @@ public class Day6 : Puzzle
 
     public enum LightAction { TurnOn, TurnOff, Toggle }
     public enum LightStatus { Off, On }
-    public readonly record struct Instruction(LightAction LightAction, (int x, int y) StartSelection_UpperLeftCorner, (int x, int y) EndSelection_LowerRightCorner);
+    public readonly record struct Instruction(LightAction LightAction, (int x, int y) UpperLeftCorner, (int x, int y) LowerRightCorner);
 
     public override int Solve_Part1()
     {
         var grid = new Matrix<LightStatus>(1000, 1000);
         foreach (var line in _instructions)
         {
-            var instr = ParseInstruction(line);
-            DoAsInstructed(instr, ref grid);
+            Instruction instruction = ParseInstruction(line);
+            LightAction lightAction = instruction.LightAction;
+            Func<LightAction, Func<LightStatus, LightStatus>> applyLightAction = ApplyLightAction;
+            ApplyLightsAction(ref grid, instruction.UpperLeftCorner, instruction.LowerRightCorner, applyLightAction(lightAction));
         }
         return grid.Count(l => l == LightStatus.On);
     }
 
+    public static void ApplyLightsAction(ref Matrix<LightStatus> grid, (int x, int y) upperLeftCorner, (int x, int y) lowerRightCorner, Func<LightStatus, LightStatus> @switch)
+    {
+        for (int x = upperLeftCorner.x; x <= lowerRightCorner.x; x++)
+        {
+            for (int y = upperLeftCorner.y; y <= lowerRightCorner.y; y++)
+            {
+                grid[x, y] = @switch(grid[x, y]);
+            }
+        }
+    }
+
     public override int Solve_Part2()
     {
+        //todo how to quick fix all in file / project
+
         throw new NotImplementedException();
     }
 
@@ -38,25 +53,15 @@ public class Day6 : Puzzle
         return gridLightsWithLitStatus;
     }
 
-    public void DoAsInstructed(Instruction instruction, ref Matrix<LightStatus> grid)
+    public static Func<LightStatus, LightStatus> ApplyLightAction(LightAction lightAction)
     {
-        var applicableLights = ApplicableLights(instruction.StartSelection_UpperLeftCorner, instruction.EndSelection_LowerRightCorner);
-
-        foreach (var lightAddress in applicableLights)
+        return lightAction switch
         {
-            switch (instruction.LightAction)
-            {
-                case LightAction.TurnOn:
-                    grid[lightAddress.x, lightAddress.y] = LightStatus.On;
-                    break;
-                case LightAction.TurnOff:
-                    grid[lightAddress.x, lightAddress.y] = LightStatus.Off;
-                    break;
-                case LightAction.Toggle:
-                    grid[lightAddress.x, lightAddress.y] = grid[lightAddress.x, lightAddress.y] == LightStatus.On ? LightStatus.Off : LightStatus.On;
-                    break;
-            }
-        }
+            LightAction.TurnOn => (lightStatus) => lightStatus = LightStatus.On,
+            LightAction.TurnOff => (lightStatus) => lightStatus = LightStatus.Off,
+            LightAction.Toggle => (lightStatus) => lightStatus == LightStatus.On ? lightStatus = LightStatus.Off : lightStatus = LightStatus.On,
+            _ => throw new NotImplementedException(),
+        };
     }
 
     public static Instruction ParseInstruction(string @string)
@@ -64,17 +69,16 @@ public class Day6 : Puzzle
         (int x, int y) upperLeftCorner = new();
         (int x, int y) lowerRightCorner = new();
         LightAction instruction = default;
-        var turn_on = "turn on ";
-        var turn_off = "turn off ";
-        var toggle = "toggle ";
-        var splitString = " through ";
+        const string TurnOn = "turn on ";
+        const string TurnOff = "turn off ";
+        const string Toggle = "toggle ";
+        const string SplitString = " through ";
 
-        foreach (var instructionText in new string[] { turn_on, turn_off, toggle })
+        foreach (var instructionText in new string[] { TurnOn, TurnOff, Toggle })
         {
             if (@string.StartsWith(instructionText))
             {
-                var coordsText = @string.Remove(0, instructionText.Length).Split(splitString);
-
+                var coordsText = @string.Remove(0, instructionText.Length).Split(SplitString);
                 var startingCoord = coordsText[0].Split(',').Map(int.Parse).ToList();
                 var endingCoord = coordsText[1].Split(',').Map(int.Parse).ToList();
                 upperLeftCorner = (startingCoord[0], startingCoord[1]);
@@ -102,12 +106,12 @@ public class Day6 : Puzzle
         return applicableLights;
     }
 
-    public static HashSet<(int x, int y)> ApplicableLights((int x, int y) StartSelection_UpperLeftCorner, (int x, int y) EndSelection_LowerRightCorner)
+    public static HashSet<(int x, int y)> ApplicableLights((int x, int y) upperLeftCorner, (int x, int y) lowerRightCorner)
     {
         HashSet<(int x, int y)> applicableLights = new();
-        for (int x = StartSelection_UpperLeftCorner.x; x <= EndSelection_LowerRightCorner.x; x++)
+        for (int x = upperLeftCorner.x; x <= lowerRightCorner.x; x++)
         {
-            for (int y = StartSelection_UpperLeftCorner.y; y <= EndSelection_LowerRightCorner.y; y++)
+            for (int y = upperLeftCorner.y; y <= lowerRightCorner.y; y++)
             {
                 applicableLights.Add((x, y));
             }
