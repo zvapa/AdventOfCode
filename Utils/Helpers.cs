@@ -23,9 +23,4 @@ public static class Helpers
             }
         }
     }
-
-    public static void MatrixApply<T>(this ref Matrix<T> matrix, (int x, int y) upperLeftCorner, (int x, int y) lowerRightCorner, Action<T> action)
-    {
-        
-    }
 }

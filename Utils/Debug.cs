@@ -1,4 +1,4 @@
-namespace Utils;
+﻿namespace Utils;
 
 public static class Debug
 {
@@ -28,6 +28,4 @@ public static class Debug
     /// Serializes an object of type <typeparamref name="T"/>
     /// </summary>
     public static string Serialize<T>(this T o) => JsonSerializer.Serialize(o);
-
-
 }
