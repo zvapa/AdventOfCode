@@ -21,6 +21,7 @@ public static class Program
         // Console.WriteLine("_2015.Day5.Part2: " + _2015_day5.Solve_Part2());
         var _2015_day6 = new _2015.Day6(@"2015\Inputs\day6_input.txt");
         Console.WriteLine("_2015.Day6.Part1: " + _2015_day6.Solve_Part1());
+        Console.WriteLine("_2015.Day6.Part2: " + _2015_day6.Solve_Part2());
 
         Console.ReadKey();
     }

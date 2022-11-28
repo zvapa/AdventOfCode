@@ -7,20 +7,17 @@ public class Solutions
     // private readonly Day3 sut = new(@"2015\Inputs\day3_input.txt");
     // private readonly Day4 sut = new(@"2015\Inputs\day4_input.txt");
     // private readonly Day5 sut = new(@"2015\Inputs\day5_input.txt");
-    private readonly Day6 sut = new(@"2015\Inputs\day6_input.txt");
-
-    Dictionary<Point2D_rrs, bool>? grid_dict;
-    Matrix<Day6.LightStatus>? grid;
+    // private readonly Day6 sut = new(@"2015\Inputs\day6_input.txt");
 
     [Benchmark]
-    public void Create1MSizeGrid_UseDictionary()
+    public void M1()
     {
-        grid_dict = Day6.BuildGrid_UsingDictionary(new(0, 0), new(999, 999));
+
     }
 
     [Benchmark]
-    public void Create1MSizeGrid_UseCustomType()
+    public void M2()
     {
-        grid = new Matrix<Day6.LightStatus>(1000, 1000);
+
     }
 }

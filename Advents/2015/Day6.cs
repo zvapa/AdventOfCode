@@ -65,10 +65,10 @@ public class Day6 : Puzzle
     {
         return lightAction switch
         {
-            LightAction.TurnOn => (lightStatus) => lightStatus = LightStatus.On,
-            LightAction.TurnOff => (lightStatus) => lightStatus = LightStatus.Off,
-            LightAction.Toggle => (lightStatus) => lightStatus == LightStatus.On ? lightStatus = LightStatus.Off : lightStatus = LightStatus.On,
-            _ => throw new NotImplementedException(),
+            LightAction.TurnOn => lightStatus => lightStatus = LightStatus.On,
+            LightAction.TurnOff => lightStatus => lightStatus = LightStatus.Off,
+            LightAction.Toggle => lightStatus => lightStatus == LightStatus.On ? lightStatus = LightStatus.Off : lightStatus = LightStatus.On,
+            _ => throw new NotImplementedException()
         };
     }
 
@@ -81,8 +81,8 @@ public class Day6 : Puzzle
     {
         return lightAction switch
         {
-            LightAction.TurnOn => level => level++,
-            LightAction.TurnOff => level => level == 0 ? 0 : level--,
+            LightAction.TurnOn => level => ++level,
+            LightAction.TurnOff => level => level == 0 ? 0 : --level,
             LightAction.Toggle => level => level + 2,
             _ => throw new NotImplementedException()
         };

@@ -1,12 +1,13 @@
-﻿using static AdventOfCode._2015.Day6;
+﻿using System;
+using static AdventOfCode._2015.Day6;
 namespace Tests._2015;
 
 public class Day6Tests
 {
     public class Part1
     {
-        // const string SkipOrNot = null; // Run all tests
-        const string SkipOrNot = "Remove the Skip argument to run this test."; // Skip all tests
+        const string SkipOrNot = null; // Run all tests
+        // const string SkipOrNot = "Remove the Skip argument to run this test."; // Skip all tests
 
         [Theory(Skip = SkipOrNot)]
         [MemberData(nameof(GridData))]
@@ -77,14 +78,18 @@ public class Day6Tests
         const string SkipOrNot = null; // Run all tests
         // const string SkipOrNot = "Remove the Skip argument to run this test."; // Skip all tests
 
-        [Fact]
-        public void TestName()
+        [Theory(Skip = SkipOrNot)]
+        [InlineData(LightAction.TurnOn, 10, 11)]
+        [InlineData(LightAction.TurnOff, 10, 9)]
+        [InlineData(LightAction.Toggle, 10, 12)]
+        public void Part2_ApplyLightAction(LightAction lightAction, int startValue, int expectedEndValue)
         {
             // Given
-
+            Func<LightAction, Func<int, int>> applyLightAction = ApplyLightAction_Part2;
             // When
-
+            int actualEndValue = applyLightAction(lightAction)(startValue);
             // Then
+            Assert.Equal(expectedEndValue, actualEndValue);
         }
     }
 }
