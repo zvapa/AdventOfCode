@@ -2,44 +2,52 @@ namespace AdventOfCode._2015;
 
 public class Day6 : Puzzle
 {
-    public Day6(string inputFileName) : base(inputFileName) { }
-
     public enum LightAction { TurnOn, TurnOff, Toggle }
     public enum LightStatus { Off, On }
     public readonly record struct Instruction(LightAction LightAction, (int x, int y) UpperLeftCorner, (int x, int y) LowerRightCorner);
 
+    public Day6(string inputFileName) : base(inputFileName) { }
+
     public override int Solve_Part1()
     {
-        var grid = new Matrix<LightStatus>(1000, 1000);
-        foreach (var line in _instructions)
-        {
-            Instruction instruction = ParseInstruction(line);
-            LightAction lightAction = instruction.LightAction;
-            Func<LightAction, Func<LightStatus, LightStatus>> applyLightAction = ApplyLightAction;
-            UpdateLightsGrid(ref grid, instruction.UpperLeftCorner, instruction.LowerRightCorner, applyLightAction(lightAction));
-        }
+        Matrix<LightStatus> grid = new(1000, 1000);
+        Solve(ref grid, ApplyLightAction);
         return grid.Count(l => l == LightStatus.On);
     }
 
-    public static void UpdateLightsGrid(ref Matrix<LightStatus> grid, (int x, int y) upperLeftCorner, (int x, int y) lowerRightCorner, Func<LightStatus, LightStatus> @switch)
+    public override int Solve_Part2()
+    {
+        Matrix<int> grid = new(1000, 1000);
+        Solve(ref grid, ApplyLightAction_Part2);
+        return grid.Sum();
+    }
+
+    private void Solve<TMatrix>(ref Matrix<TMatrix> grid, Func<LightAction, Func<TMatrix, TMatrix>> lightActionApplication)
+    {
+        foreach (var line in _instructions)
+        {
+            Instruction instruction = ParseInstruction(line);
+            UpdateLightsGrid(ref grid, instruction.LightAction, lightActionApplication, instruction.UpperLeftCorner, instruction.LowerRightCorner);
+        }
+    }
+
+    public static void UpdateLightsGrid<TMatrix>(
+        ref Matrix<TMatrix> grid,
+        LightAction lightAction,
+        Func<LightAction, Func<TMatrix, TMatrix>> lightActionApplication,
+        (int x, int y) upperLeftCorner = default,
+        (int x, int y) lowerRightCorner = default)
     {
         for (int x = upperLeftCorner.x; x <= lowerRightCorner.x; x++)
         {
             for (int y = upperLeftCorner.y; y <= lowerRightCorner.y; y++)
             {
-                grid[x, y] = @switch(grid[x, y]);
+                grid[x, y] = lightActionApplication(lightAction)(grid[x, y]);
             }
         }
     }
 
-    public override int Solve_Part2()
-    {
-        //todo how to quick fix all
-
-        throw new NotImplementedException();
-    }
-
-    public static Dictionary<Point2D_rrs, bool> BuildGrid_UsingDictionary(Point2D_rrs upperLeftCorner, Point2D_rrs lowerRightCorner)
+    public static Dictionary<Point2D_rrs, bool> BuildGrid_UsingDictionary(Point2D_rrs lowerRightCorner)
     {
         Dictionary<Point2D_rrs, bool> gridLightsWithLitStatus = new();
 
@@ -61,6 +69,22 @@ public class Day6 : Puzzle
             LightAction.TurnOff => (lightStatus) => lightStatus = LightStatus.Off,
             LightAction.Toggle => (lightStatus) => lightStatus == LightStatus.On ? lightStatus = LightStatus.Off : lightStatus = LightStatus.On,
             _ => throw new NotImplementedException(),
+        };
+    }
+
+    /// <summary>
+    /// From a <see cref="LightAction"/> to a <see cref="Func{int, int}"/> based on the new translation of the instructions.
+    /// </summary>
+    /// <param name="lightAction"></param>
+    /// <returns>A func that changes a brightness level from one value to another.</returns>
+    public static Func<int, int> ApplyLightAction_Part2(LightAction lightAction)
+    {
+        return lightAction switch
+        {
+            LightAction.TurnOn => level => level++,
+            LightAction.TurnOff => level => level == 0 ? 0 : level--,
+            LightAction.Toggle => level => level + 2,
+            _ => throw new NotImplementedException()
         };
     }
 
@@ -91,31 +115,5 @@ public class Day6 : Puzzle
         }
 
         return new Instruction(instruction, upperLeftCorner, lowerRightCorner);
-    }
-
-    public static HashSet<Point2D_rrs> ApplicableLights(Point2D_rrs upperLeftCorner, Point2D_rrs lowerRightCorner)
-    {
-        HashSet<Point2D_rrs> applicableLights = new();
-        for (int x = upperLeftCorner.X; x <= lowerRightCorner.X; x++)
-        {
-            for (int y = upperLeftCorner.Y; y <= lowerRightCorner.Y; y++)
-            {
-                applicableLights.Add(new Point2D_rrs(x, y));
-            }
-        }
-        return applicableLights;
-    }
-
-    public static HashSet<(int x, int y)> ApplicableLights((int x, int y) upperLeftCorner, (int x, int y) lowerRightCorner)
-    {
-        HashSet<(int x, int y)> applicableLights = new();
-        for (int x = upperLeftCorner.x; x <= lowerRightCorner.x; x++)
-        {
-            for (int y = upperLeftCorner.y; y <= lowerRightCorner.y; y++)
-            {
-                applicableLights.Add((x, y));
-            }
-        }
-        return applicableLights;
     }
 }

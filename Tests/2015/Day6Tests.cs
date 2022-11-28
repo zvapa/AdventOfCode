@@ -10,16 +10,16 @@ public class Day6Tests
 
         [Theory(Skip = SkipOrNot)]
         [MemberData(nameof(GridData))]
-        public void Part1_BuildLightsGrid_UsingDictionary(Point2D_rrs upperLeft, Point2D_rrs lowerRight, int expectedSize)
+        public void Part1_BuildLightsGrid_UsingDictionary(Point2D_rrs lowerRight, int expectedSize)
         {
-            var grid = BuildGrid_UsingDictionary(upperLeft, lowerRight);
+            var grid = BuildGrid_UsingDictionary(lowerRight);
             int actualSize = grid.Count;
             Assert.True(actualSize == expectedSize, $"The grid size was expected to be {expectedSize} but was {actualSize}.");
         }
-        public static TheoryData<Point2D_rrs, Point2D_rrs, int> GridData => new()
+        public static TheoryData<Point2D_rrs, int> GridData => new()
         {
-            { new Point2D_rrs(0,0), new Point2D_rrs(2,2), 9},
-            { new Point2D_rrs(0,0), new Point2D_rrs(3,3), 16}
+            { new Point2D_rrs(2,2), 9},
+            { new Point2D_rrs(3,3), 16}
         };
 
         [Fact(Skip = SkipOrNot)]
@@ -38,7 +38,7 @@ public class Day6Tests
         }
 
         [Fact(Skip = SkipOrNot)]
-        public void Part1_TurnOnSomeLights()
+        public void Part1_UpdateLightsGrid_TurnOnSomeLights()
         {
             // Given
             (int rows, int columns) = (3, 3);
@@ -48,7 +48,7 @@ public class Day6Tests
             Func<LightAction, Func<LightStatus, LightStatus>> applyLightAction = ApplyLightAction;
             const int ExpectedLightsOn = 4;
             // When
-            UpdateLightsGrid(ref lightsGrid, instruction.UpperLeftCorner, instruction.LowerRightCorner, applyLightAction(instruction.LightAction));
+            UpdateLightsGrid(ref lightsGrid, instruction.LightAction, applyLightAction, instruction.UpperLeftCorner, instruction.LowerRightCorner);
             // Then
             int actualLightsOn = lightsGrid.Count(l => l == LightStatus.On);
             Assert.True(actualLightsOn == ExpectedLightsOn, $"There should be {ExpectedLightsOn} lights on, but {actualLightsOn} found.");
@@ -70,30 +70,6 @@ public class Day6Tests
             // Then
             Assert.Equal(expectedFinalLightStatus, actualFinalLightStatus);
         }
-
-        [Theory(Skip = SkipOrNot)]
-        [MemberData(nameof(ApplicableLightsData))]
-        public static void GetApplicableLights(Point2D_rrs upperLeftCorner, Point2D_rrs lowerRightCorner, HashSet<Point2D_rrs> expectedGrid)
-        {
-            // Given
-            // When
-            var actualApplicableLights = ApplicableLights(upperLeftCorner, lowerRightCorner);
-            // Then
-            Assert.True(actualApplicableLights.SetEquals(expectedGrid));
-        }
-        public static TheoryData<Point2D_rrs, Point2D_rrs, HashSet<Point2D_rrs>> ApplicableLightsData => new()
-        {
-            {
-                new Point2D_rrs(1, 1),
-                new Point2D_rrs(2, 2),
-                new HashSet<Point2D_rrs>() { new(1, 1), new(1, 2), new(2, 1), new(2, 2) }
-            },
-            {
-                new Point2D_rrs(1, 0),
-                new Point2D_rrs(2, 3),
-                new HashSet<Point2D_rrs>() { new(1, 0), new(1, 1), new(1, 2), new(1, 3), new(2, 0), new(2, 1), new(2, 2), new(2, 3) }
-            }
-        };
     }
 
     public class Part2
