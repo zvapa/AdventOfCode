@@ -48,7 +48,7 @@ public class Day6Tests
             Func<LightAction, Func<LightStatus, LightStatus>> applyLightAction = ApplyLightAction;
             const int ExpectedLightsOn = 4;
             // When
-            ApplyLightsAction(ref lightsGrid, instruction.UpperLeftCorner, instruction.LowerRightCorner, applyLightAction(instruction.LightAction));
+            UpdateLightsGrid(ref lightsGrid, instruction.UpperLeftCorner, instruction.LowerRightCorner, applyLightAction(instruction.LightAction));
             // Then
             int actualLightsOn = lightsGrid.Count(l => l == LightStatus.On);
             Assert.True(actualLightsOn == ExpectedLightsOn, $"There should be {ExpectedLightsOn} lights on, but {actualLightsOn} found.");

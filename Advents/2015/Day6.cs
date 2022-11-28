@@ -16,12 +16,12 @@ public class Day6 : Puzzle
             Instruction instruction = ParseInstruction(line);
             LightAction lightAction = instruction.LightAction;
             Func<LightAction, Func<LightStatus, LightStatus>> applyLightAction = ApplyLightAction;
-            ApplyLightsAction(ref grid, instruction.UpperLeftCorner, instruction.LowerRightCorner, applyLightAction(lightAction));
+            UpdateLightsGrid(ref grid, instruction.UpperLeftCorner, instruction.LowerRightCorner, applyLightAction(lightAction));
         }
         return grid.Count(l => l == LightStatus.On);
     }
 
-    public static void ApplyLightsAction(ref Matrix<LightStatus> grid, (int x, int y) upperLeftCorner, (int x, int y) lowerRightCorner, Func<LightStatus, LightStatus> @switch)
+    public static void UpdateLightsGrid(ref Matrix<LightStatus> grid, (int x, int y) upperLeftCorner, (int x, int y) lowerRightCorner, Func<LightStatus, LightStatus> @switch)
     {
         for (int x = upperLeftCorner.x; x <= lowerRightCorner.x; x++)
         {
@@ -34,7 +34,7 @@ public class Day6 : Puzzle
 
     public override int Solve_Part2()
     {
-        //todo how to quick fix all in file / project
+        //todo how to quick fix all
 
         throw new NotImplementedException();
     }
