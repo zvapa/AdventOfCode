@@ -35,6 +35,7 @@ dotnet_diagnostic.IDE0044.severity = warning # IDE0044: Make field readonly
 dotnet_diagnostic.IDE0051.severity = warning # IDE0051: Remove unused private member (Are IDE0051 and IDE0052 too noisy to be warnings for IDE editing scenarios? Should they be made build-only warnings?)
 dotnet_diagnostic.IDE0055.severity = warning # IDE0055: Fix formatting
 dotnet_diagnostic.IDE0073.severity = none # IDE0073: File header
+dotnet_diagnostic.IDE0090.severity = warning # IDE0090: Simplify new expression
 dotnet_diagnostic.IDE0170.severity = warning # IDE0170: Prefer extended property pattern
 dotnet_diagnostic.IDE2000.severity = warning # dotnet_style_allow_multiple_blank_lines_experimental
 dotnet_diagnostic.RS2008.severity = none # error RS2008: Enable analyzer release tracking for the analyzer project containing rule '{0}'
