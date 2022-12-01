@@ -13,7 +13,7 @@ public class Day5 : Puzzle
 
     public List<string> Solve_Part1_Linq()
     {
-        var source = _instructions;
+        var source = _instructionLines;
 
         var seed = new Day5Part1Accumulator(
                     Previous: '\0',
@@ -29,7 +29,7 @@ public class Day5 : Puzzle
     {
         var result = new List<string>();
 
-        foreach (var word in _instructions)
+        foreach (var word in _instructionLines)
         {
             var vowelsCount = new Dictionary<char, int> { ['a'] = 0, ['e'] = 0, ['i'] = 0, ['o'] = 0, ['u'] = 0 };
             var excludedStrings = new HashSet<string> { "ab", "cd", "pq", "xy" };
@@ -126,7 +126,7 @@ public class Day5 : Puzzle
     public int Solve_Part2_TestEachConditionSeparately()
     {
         var niceWordsCount = 0;
-        foreach (var word in _instructions)
+        foreach (var word in _instructionLines)
         {
             if (ContainsAtLeastOneLetterWhichRepeatsWithExactlyOneLetterBetweenThem(word) &&
                 ContainsNonOverlappingLetterPairThatAppearsAtLeastTwice(word))
@@ -140,7 +140,7 @@ public class Day5 : Puzzle
     public int Solve_Part2_TestBothConditionsInOneParsing()
     {
         var niceWordsCount = 0;
-        foreach (var word in _instructions)
+        foreach (var word in _instructionLines)
         {
             if (IsNiceWord(word))
             {
@@ -153,7 +153,7 @@ public class Day5 : Puzzle
     public List<string> Part2_GetNiceWords()
     {
         List<string> res = new();
-        foreach (var word in _instructions)
+        foreach (var word in _instructionLines)
         {
             if (IsNiceWord(word))
             {

@@ -2,7 +2,7 @@ namespace Utils;
 
 public static class Readers
 {
-    public static string ReadAllInstructions(string filePath)
+    public static string ReadInstructions(string filePath)
     {
         string text = string.Empty;
         try

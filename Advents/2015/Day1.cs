@@ -9,10 +9,10 @@ public class Day1 : Puzzle
         return Solve_Part1_With_Sum();
     }
 
-    public int Solve_Part1_With_Sum() => _instructions[0]
+    public int Solve_Part1_With_Sum() => _instructionLines[0]
         .Sum(c => GetFloorDirection(c));
 
-    public int Solve_Part1_With_Aggregate() => _instructions[0]
+    public int Solve_Part1_With_Aggregate() => _instructionLines[0]
             .Aggregate(0, (currentFloor, next) => currentFloor + GetFloorDirection(next));
 
     public override int Solve_Part2()
@@ -23,7 +23,7 @@ public class Day1 : Puzzle
     public int Solve_Part2_With_First()
     {
         int currentPosition = 0;
-        return _instructions[0]
+        return _instructionLines[0]
             .Select((c, i) => (index: i + 1, move: c))
             .First(t => IsEnteringBasement(ref currentPosition, t.move))
             .index

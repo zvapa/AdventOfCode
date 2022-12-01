@@ -2,14 +2,14 @@ namespace AdventOfCode;
 
 public abstract class Puzzle
 {
-    public readonly List<string> _instructions;
+    public readonly List<string> _instructionLines;
 
     protected Puzzle(string inputFileName)
     {
         string? subpath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         var path = Path.Combine(subpath!, inputFileName);
 
-        _instructions = Readers.ReadInstructionLines(path);
+        _instructionLines = Readers.ReadInstructionLines(path);
     }
 
     public abstract int Solve_Part1();

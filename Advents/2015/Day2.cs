@@ -21,13 +21,13 @@ public class Day2 : Puzzle
     }
 
     public int Solve_Part1_Method1() =>
-            _instructions
+            _instructionLines
                 .Select(GetDimensions)
                 .Select(d => Area(d.length, d.width, d.height) + SmallestAreaAndPerimeter(d.length, d.width, d.height).smallestArea)
                 .Sum();
 
     public int Solve_Part1_Method2() =>
-            _instructions
+            _instructionLines
                 .Select(s => s.Split('x'))
                 .Select(x => x.Select(int.Parse))
                 .Select(w => w.OrderBy(x => x).ToArray())
@@ -37,7 +37,7 @@ public class Day2 : Puzzle
     public int Solve_Part1_Method3()
     {
         int sum = 0;
-        foreach (var line in _instructions)
+        foreach (var line in _instructionLines)
         {
             (int length, int width, int height) = GetDimensions(line);
 
@@ -63,7 +63,7 @@ public class Day2 : Puzzle
 
     public int Solve_Part2_Method1()
     {
-        return _instructions
+        return _instructionLines
             .Select(GetDimensions)
             .Select(d => SmallestAreaAndPerimeter(d.length, d.width, d.height).smallestPerimeter + BowLength(d.length, d.width, d.height))
             .Sum();

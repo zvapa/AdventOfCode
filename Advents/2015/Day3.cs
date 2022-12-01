@@ -25,7 +25,7 @@ public class Day3 : Puzzle
     public int Solve_Part1_UsingRecords()
     {
         Point2D currentLocation = _start;
-        foreach (char instruction in _instructions[0])
+        foreach (char instruction in _instructionLines[0])
         {
             currentLocation = currentLocation.NextLocation(instruction);
             MarkHouse(currentLocation);
@@ -36,7 +36,7 @@ public class Day3 : Puzzle
     public int Solve_Part1_UsingReadonlyStructs()
     {
         Point2D_rs currentLocation = _start_s;
-        foreach (char instruction in _instructions[0])
+        foreach (char instruction in _instructionLines[0])
         {
             currentLocation = currentLocation.NextLocation(instruction);
             MarkHouse(currentLocation);
@@ -51,7 +51,7 @@ public class Day3 : Puzzle
         Point2D roboSantasCurrentLocation = _start;
         _houses[_start] = 2; // both Santa and Robo-Santa delivered a present here
 
-        foreach (char instruction in _instructions[0])
+        foreach (char instruction in _instructionLines[0])
         {
             if (isSantasTurn)
             {

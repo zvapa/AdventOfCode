@@ -24,7 +24,7 @@ public class Day6 : Puzzle
 
     private void Solve<TMatrix>(ref Matrix<TMatrix> grid, Func<LightAction, Func<TMatrix, TMatrix>> lightActionApplication)
     {
-        foreach (var line in _instructions)
+        foreach (var line in _instructionLines)
         {
             Instruction instruction = ParseInstruction(line);
             UpdateLightsGrid(ref grid, instruction.LightAction, lightActionApplication, instruction.UpperLeftCorner, instruction.LowerRightCorner);
