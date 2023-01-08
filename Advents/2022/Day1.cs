@@ -24,10 +24,8 @@ public class Day1 : Puzzle
     */
     public override int Solve_Part2()
     {
-        var x = ElvesCalories();
-        x.Sort();
-        return x.ToArray()[^3..].Sum();
-
-        // throw new NotImplementedException();
+        var x = ElvesCalories().ToArray();
+        Array.Sort(x);
+        return x[^3..].Sum();
     }
 }
