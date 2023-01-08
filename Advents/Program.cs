@@ -23,10 +23,13 @@ public static class Program
         // Console.WriteLine("_2015_day6.Solve_Part1: " + _2015_day6.Solve_Part1());
         // Console.WriteLine("_2015_day6.Solve_Part2: " + _2015_day6.Solve_Part2());
 
-        var _2022_day1 = new _2022.Day1(@"2022\Inputs\day1_input.txt");
+        // var _2022_day1 = new _2022.Day1(@"2022\Inputs\day1_input.txt");
         // Console.WriteLine("_2022_day1.Solve_Part1: " + _2022_day1.Solve_Part1());
-        Console.WriteLine("_2022_day1.Solve_Part2: " + _2022_day1.Solve_Part2());
+        // Console.WriteLine("_2022_day1.Solve_Part2: " + _2022_day1.Solve_Part2());
+        var _2022_day2 = new _2022.Day2(@"2022\Inputs\day2_input.txt");
+        Console.WriteLine("_2022_day2.Solve_Part1: " + _2022_day2.Solve_Part1());
+        Console.WriteLine("_2022_day2.Solve_Part2: " + _2022_day2.Solve_Part2());
 
-        Console.ReadKey();
+        _ = Console.ReadKey();
     }
 }
