@@ -54,7 +54,7 @@ public class Day5 : Puzzle
                     containsExcludedString = true;
                 }
 
-                if (vowelsCount.Keys.Contains(currentChar))
+                if (vowelsCount.ContainsKey(currentChar))
                 {
                     vowelsCount[currentChar]++;
                 }
