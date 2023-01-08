@@ -18,12 +18,12 @@ public readonly struct Point2D_rs
 
 public readonly record struct Matrix<T>(int Rows, int Columns) : IEnumerable<T>
 {
-    private readonly T[,] grid = new T[Rows, Columns];
+    private readonly T[,] _grid = new T[Rows, Columns];
 
     public T this[int row, int column]
     {
-        get => grid[row, column];
-        set => grid[row, column] = value;
+        get => _grid[row, column];
+        set => _grid[row, column] = value;
     }
 
     public IEnumerator<T> GetEnumerator()
@@ -32,7 +32,7 @@ public readonly record struct Matrix<T>(int Rows, int Columns) : IEnumerable<T>
         {
             for (int j = 0; j < Columns; j++)
             {
-                yield return grid[i, j];
+                yield return _grid[i, j];
             }
         }
     }

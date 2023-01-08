@@ -1,8 +1,7 @@
-﻿using System;
-using static AdventOfCode._2015.Day6;
+﻿using static AdventOfCode._2015.Day6;
 namespace Tests._2015;
 
-public class Day6Tests
+public static class Day6Tests
 {
     public class Part1
     {
@@ -32,10 +31,10 @@ public class Day6Tests
             // When
             var expectedSize = rows * columns;
             var actualSize = lightsGrid.Count();
-            const LightStatus expectedStatus = LightStatus.Off;
+            const LightStatus ExpectedStatus = LightStatus.Off;
             // Then
             Assert.True(lightsGrid.Count() == expectedSize, $"The grid should have {expectedSize} lights, but {actualSize} were found.");
-            Assert.True(lightsGrid.All(l => l == expectedStatus), "All lights should be off by default, but not all are.");
+            Assert.True(lightsGrid.All(l => l == ExpectedStatus), "All lights should be off by default, but not all are.");
         }
 
         [Fact(Skip = SkipOrNot)]

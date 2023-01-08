@@ -18,7 +18,7 @@ public class Day4 : Puzzle
 
     public int Solve_Using_Linq(Func<string, bool> predicate)
     {
-        string key = _instructionLines[0];
+        string key = InstructionLines[0];
         using MD5 md5Hash = MD5.Create();
         int result = Enumerable
             .Range(1, int.MaxValue)
@@ -31,7 +31,7 @@ public class Day4 : Puzzle
 
     public int Solve_Using_Loop(Func<string, bool> predicate)
     {
-        string key = _instructionLines[0];
+        string key = InstructionLines[0];
         using MD5 md5Hash = MD5.Create();
         for (int i = 0; i < int.MaxValue; i++)
         {
@@ -53,7 +53,7 @@ public class Day4 : Puzzle
         // and format each one as a hexadecimal string.
         for (int i = 0; i < data.Length; i++)
         {
-            sBuilder.Append(data[i].ToString("x2"));
+            _ = sBuilder.Append(data[i].ToString("x2"));
         }
         // Return the hexadecimal string.
         // return sBuilder.ToString();

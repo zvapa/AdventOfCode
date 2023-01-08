@@ -12,7 +12,7 @@ public class Day1 : Puzzle
 
     private List<int> ElvesCalories()
     {
-        return _instructions
+        return Instructions
             .Split(new string[] { "\n\n" }, StringSplitOptions.RemoveEmptyEntries)
             .Select(g => g.Split("\n", StringSplitOptions.RemoveEmptyEntries).Sum(n => int.Parse(n)))
             .ToList();
