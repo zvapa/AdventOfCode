@@ -9,15 +9,15 @@ public class Solutions
     // private readonly Day5 sut = new(@"2015\Inputs\day5_input.txt");
     // private readonly Day6 sut = new(@"2015\Inputs\day6_input.txt");
 
-    [Benchmark]
-    public void M1()
-    {
+    // [Benchmark]
+    // public void M1()
+    // {
 
-    }
+    // }
 
-    [Benchmark]
-    public void M2()
-    {
+    // [Benchmark]
+    // public void M2()
+    // {
 
-    }
+    // }
 }
