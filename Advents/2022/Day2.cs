@@ -26,8 +26,9 @@ public class Day2 : Puzzle
         };
 
         Rounds = InstructionLines
-            .Map(instruction => new GameRound(opponentMove: OpponentMovesMapping[instruction[0]],
-                                              mysterySymbol: instruction[2]));
+            .Map(instruction => new GameRound(
+                opponentMove: OpponentMovesMapping[instruction[0]],
+                mysterySymbol: instruction[2]));
     }
 
     private Dictionary<char, RockPaperScissors> OpponentMovesMapping { get; }
@@ -48,7 +49,11 @@ public class Day2 : Puzzle
             .Select(round =>
             {
                 var outcome = RoundResults[round.MysterySymbol];
-                return round with { Outcome = outcome, PlayerMove = round.OpponentMove.CalculatePlayerMove(outcome) };
+                return round with
+                {
+                    Outcome = outcome,
+                    PlayerMove = round.OpponentMove.CalculatePlayerMove(outcome)
+                };
             })
             .Sum(round => round.CalculateScore().Value);
     }
@@ -99,7 +104,9 @@ public static class Game
         _ => throw new NotImplementedException(),
     };
 
-    public static RockPaperScissors CalculatePlayerMove(this RockPaperScissors opponentChoice, RoundResult desiredOutcome) =>
+    public static RockPaperScissors CalculatePlayerMove(
+        this RockPaperScissors opponentChoice,
+        RoundResult desiredOutcome) =>
         (opponentChoice, desiredOutcome) switch
         {
             (RockPaperScissors.Rock, RoundResult.Lose) => RockPaperScissors.Scissors,
