@@ -35,9 +35,12 @@ public static class Program
         // var _2022_day3 = new _2022.Day3(@"2022\Inputs\day3_input.txt");
         // Console.WriteLine("_2022_day3.Solve_Part1: " + _2022_day3.Solve_Part1());
         // Console.WriteLine("_2022_day3.Solve_Part2: " + _2022_day3.Solve_Part2());
-        var _2022_day4 = new _2022.Day4(@"2022\Inputs\day4_input.txt");
-        Console.WriteLine("_2022_day4.Solve_Part1: " + _2022_day4.Solve_Part1());
-        Console.WriteLine("_2022_day4.Solve_Part2: " + _2022_day4.Solve_Part2());
+        // var _2022_day4 = new _2022.Day4(@"2022\Inputs\day4_input.txt");
+        // Console.WriteLine("_2022_day4.Solve_Part1: " + _2022_day4.Solve_Part1());
+        // Console.WriteLine("_2022_day4.Solve_Part2: " + _2022_day4.Solve_Part2());
+        var _2022_day5 = new _2022.Day5(@"2022\Inputs\day5_input.txt");
+        Console.WriteLine("_2022_day5.Solve_Part1: " + _2022_day5.Solve_Part1());
+        Console.WriteLine("_2022_day5.Solve_Part2: " + _2022_day5.Solve_Part2());
 
         #endregion
         _ = Console.ReadKey();
