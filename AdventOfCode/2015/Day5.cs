@@ -6,7 +6,7 @@ public class Day5 : Puzzle
 
     public record Day5Part1Accumulator(char Previous, bool CharAppearsTwice, Dictionary<char, int> VowelsCount, Dictionary<string, int> ExcludedStringsCount);
 
-    public override int Solve_Part1()
+    public override object Solve_Part1()
     {
         return Solve_Part1_Linq().Count;
     }
@@ -117,7 +117,7 @@ public class Day5 : Puzzle
             finalAcc.ExcludedStringsCount.Values.Sum() == 0;
     }
 
-    public override int Solve_Part2()
+    public override object Solve_Part2()
     {
         // return Solve_Part2_TestBothConditionsInOneParsing();
         return Solve_Part2_TestEachConditionSeparately();

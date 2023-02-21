@@ -4,13 +4,13 @@ public class Day4 : Puzzle
 {
     public Day4(string inputFileName) : base(inputFileName) { }
 
-    public override int Solve_Part1()
+    public override object Solve_Part1()
     {
         return Solve_Using_Linq(StartsWithAtLeastFiveZeros);
         // return Solve_Using_Loop(StartsWithAtLeastFiveZeros);
     }
 
-    public override int Solve_Part2()
+    public override object Solve_Part2()
     {
         return Solve_Using_Linq(StartsWithAtLeastSixZeros);
         // return Solve_Using_Loop();

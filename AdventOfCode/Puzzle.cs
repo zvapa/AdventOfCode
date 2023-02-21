@@ -13,7 +13,6 @@ public abstract class Puzzle
         InstructionLines = Readers.ReadInstructionLines(path);
         Instructions = Readers.ReadInstructions(path);
     }
-
-    public abstract int Solve_Part1();
-    public abstract int Solve_Part2();
+    public abstract object Solve_Part1();
+    public abstract object Solve_Part2();
 }

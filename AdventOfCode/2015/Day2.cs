@@ -7,7 +7,7 @@ public class Day2 : Puzzle
     /// <summary>
     /// How many total square feet of wrapping paper should they order?
     /// </summary>
-    public override int Solve_Part1()
+    public override object Solve_Part1()
     {
         return Solve_Part1_Method3();
     }
@@ -15,7 +15,7 @@ public class Day2 : Puzzle
     /// <summary>
     /// How many total feet of ribbon should they order?
     /// </summary>
-    public override int Solve_Part2()
+    public override object Solve_Part2()
     {
         return Solve_Part2_Method1();
     }

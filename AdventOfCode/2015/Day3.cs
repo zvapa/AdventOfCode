@@ -16,7 +16,7 @@ public class Day3 : Puzzle
     /// <summary>
     /// How many houses receive at least one present?
     /// </summary>
-    public override int Solve_Part1()
+    public override object Solve_Part1()
     {
         return Solve_Part1_UsingRecords();
         // return Solve_Part1_UsingReadonlyStructs();
@@ -44,7 +44,7 @@ public class Day3 : Puzzle
         return _houses_s.Count;
     }
 
-    public override int Solve_Part2()
+    public override object Solve_Part2()
     {
         bool isSantasTurn = true;
         Point2D santasCurrentLocation = _start;

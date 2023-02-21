@@ -12,7 +12,7 @@ public class Day4 : Puzzle
     }
 
     // In how many assignment pairs does one range fully contain the other
-    public override int Solve_Part1() => _pairs.Count(IsFullyOverlapping);
+    // public override int Solve_Part1() => _pairs.Count(IsFullyOverlapping);
 
     private Pair ToPair(string line)
     {
@@ -47,7 +47,7 @@ public class Day4 : Puzzle
         return false;
     }
 
-    public override int Solve_Part2() => _pairs.Count(IsOverlapping);
+    public override object Solve_Part2() => _pairs.Count(IsOverlapping);
 
     private bool IsOverlapping(Pair pair)
     {
@@ -56,5 +56,11 @@ public class Day4 : Puzzle
         if (pair.Second.Start > pair.First.End)
             return false;
         return true;
+    }
+
+    public override object Solve_Part1()
+    {
+        int result = _pairs.Count(IsFullyOverlapping);
+        return result;
     }
 }

@@ -4,7 +4,7 @@ public class Day1 : Puzzle
 {
     public Day1(string instructions) : base(instructions) { }
 
-    public override int Solve_Part1()
+    public override object Solve_Part1()
     {
         return Solve_Part1_With_Sum();
     }
@@ -15,7 +15,7 @@ public class Day1 : Puzzle
     public int Solve_Part1_With_Aggregate() => InstructionLines[0]
             .Aggregate(0, (currentFloor, next) => currentFloor + GetFloorDirection(next));
 
-    public override int Solve_Part2()
+    public override object Solve_Part2()
     {
         return Solve_Part2_With_First();
     }

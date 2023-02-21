@@ -5,7 +5,7 @@ public class Day1 : Puzzle
     public Day1(string instructions) : base(instructions) { }
 
     // how many Calories are being carried by the Elf carrying the most Calories?
-    public override int Solve_Part1()
+    public override object Solve_Part1()
     {
         return ElvesCalories().Max();
     }
@@ -22,7 +22,7 @@ public class Day1 : Puzzle
     Find the top three Elves carrying the most Calories.
     How many Calories are those Elves carrying in total?
     */
-    public override int Solve_Part2()
+    public override object Solve_Part2()
     {
         var x = ElvesCalories().ToArray();
         Array.Sort(x);

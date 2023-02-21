@@ -36,14 +36,14 @@ public class Day2 : Puzzle
     private Dictionary<char, RoundResult> RoundResults { get; }
     private IEnumerable<GameRound> Rounds { get; }
 
-    public override int Solve_Part1()
+    public override object Solve_Part1()
     {
         return Rounds
             .Select(round => round with { PlayerMove = PlayerMovesMapping[round.MysterySymbol] })
             .Sum(round => round.CalculateScore().Value);
     }
 
-    public override int Solve_Part2()
+    public override object Solve_Part2()
     {
         return Rounds
             .Select(round =>

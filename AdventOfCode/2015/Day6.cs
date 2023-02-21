@@ -8,14 +8,14 @@ public class Day6 : Puzzle
 
     public Day6(string inputFileName) : base(inputFileName) { }
 
-    public override int Solve_Part1()
+    public override object Solve_Part1()
     {
         Matrix<LightStatus> grid = new(1000, 1000);
         Solve(ref grid, ApplyLightAction);
         return grid.Count(l => l == LightStatus.On);
     }
 
-    public override int Solve_Part2()
+    public override object Solve_Part2()
     {
         Matrix<int> grid = new(1000, 1000);
         Solve(ref grid, ApplyLightAction_Part2);

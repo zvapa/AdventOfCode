@@ -19,7 +19,7 @@ public class Day3 : Puzzle
         }
     }
 
-    public override int Solve_Part1() => InstructionLines.Sum(SumOfDuplicates);
+    public override object Solve_Part1() => InstructionLines.Sum(SumOfDuplicates);
 
     private int SumOfDuplicates(string line)
     {
@@ -40,7 +40,7 @@ public class Day3 : Puzzle
         return duplicates.Sum(c => _lettersAndPriority[c]);
     }
 
-    public override int Solve_Part2()
+    public override object Solve_Part2()
     {
         var groups = SplitIntoChunks(InstructionLines, 3);
         int sumOfThePriorities = groups
